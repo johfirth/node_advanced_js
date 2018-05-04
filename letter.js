@@ -1,26 +1,24 @@
 var hiddenWord = [];
 
 function Letter(hiddenLetter, guess, word){
-  this.hiddenLetter = hiddenLetter;
-  this.guess = guess;
-  this.word = word.split('')
+  this.value = hiddenLetter;
+  this.guessed = false;
 }
 
 Letter.prototype = {
-  printLetter: function(){
-    this.word.forEach(element => {
-      hiddenWord.push('_')
-      
-    });
-    console.log(hiddenWord)
+  displayValue: function() {
+    return this.guessed ? this.value : '_'
+  },
+  doesCharMatch: function(char) {
+    const match = this.value === char;
+    
+    if (match) {
+      this.guessed = true;
     }
+
+    return match;
   }
+}
 
 
-
-
-
-var word1 = new Letter('a', 'b', 'duck')
-word1.printLetter();
-
-console.log(word1.word)
+module.exports = Letter
